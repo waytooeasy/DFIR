@@ -1,0 +1,45 @@
+Registry:
+
+  PERSISTENCE
+    User persistence:
+      HKCU/Software/Random Directory - Possible RAND key
+      HKCU\Software\Microsoft\Windows\CurrentVersion\RunOnce | Runs once on login
+      HKLM\Software\Microsoft\Windows\CurrentVersion\Run | Runs on startup for all users
+      HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce | Runs only once on system boot
+      HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run | Alternative startup entry
+    Service persistence:
+      HKLM\SYSTEM\CurrentControlSet\Services\	| Contains services (often used by rootkits)
+      HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\BootExecute	| Controls startup processes
+    Tasks persistence:
+      HKLM\Software\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tasks | Stores Scheduled Tasks
+      HKLM\Software\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree	| Task metadata
+    
+  RECENT RUN
+    Programs:
+      HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs | Recent documents opened
+      HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU | Recently executed commands
+      HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\UserAssist | Tracks GUI-based program executions
+    PWSH & CMD:
+      HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths | URLs and paths typed in Explorer
+      HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\OpenSavePidlMRU | Recent opened files
+      HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\LastVisitedPidlMRU	| Last visited locations
+
+  NETWORK & REMOTE
+    RDP & Remote
+      HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths	| URLs and paths typed in Explorer
+      HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\OpenSavePidlMRU	| Recent opened files
+      HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\LastVisitedPidlMRU	| Last visited locations
+    Proxy & VPN
+      HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings	| Stores proxy settings
+      HKCU\Software\Microsoft\RAS Phonebook	| Tracks VPN connections
+
+  MALWARE & INJECTION
+    DLL Injection & Hijacking
+      HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\AppCertDLLs	| Forces DLLs to load into every process
+      HKLM\Software\Microsoft\Windows NT\CurrentVersion\Windows\AppInit_DLLs | Older method for injecting DLLs
+      HKCU\Software\Microsoft\Windows\CurrentVersion\Run	| Can load malicious DLLs at startup
+    Process Hollowing & UAC Bypas
+      HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image | File Execution Options	Used for debugger hijacking (malware replaces legit binaries)
+      HKLM\Software\Microsoft\Windows NT\CurrentVersion\SilentProcessExit	| Allows forced process termination
+      HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs	| Stores system DLLs that are loaded into processes
+          
