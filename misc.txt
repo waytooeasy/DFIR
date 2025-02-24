@@ -42,4 +42,8 @@ Registry:
       HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image | File Execution Options	Used for debugger hijacking (malware replaces legit binaries)
       HKLM\Software\Microsoft\Windows NT\CurrentVersion\SilentProcessExit	| Allows forced process termination
       HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\KnownDLLs	| Stores system DLLs that are loaded into processes
-          
+
+
+PWSH & CMD
+  Windows Events Querys
+    Get-WinEvent -LogName Microsoft-Windows-Sysmon/Operational -ComputerName NB-026920 | Where-Object { $_.Id -eq  -and $_.Message -match "" } | Format-List * | Body message matches
